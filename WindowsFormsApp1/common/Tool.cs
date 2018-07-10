@@ -27,7 +27,7 @@ namespace WindowsFormsApp1.common
         public static bool  regularPhone(string phnumber)
         {
             Regex rx = new Regex(@"^(\d{3,4}-)?\d{6,8}$");
-           bool result= rx.IsMatch(phnumber);
+            bool result= rx.IsMatch(phnumber);
             return result;
             
         }
@@ -50,6 +50,22 @@ namespace WindowsFormsApp1.common
                 }
             }
             return i;
+        }
+
+        public static bool TextBoxExpression(TextBox textBox, string Expression)
+        {
+            bool re = false;
+            Regex reg = new Regex(Expression);
+            if (textBox.Text=="" || !reg.Match(textBox.Text).Success)
+            {
+                MessageBox.Show("请输入正确的输入格式");
+            }
+            else
+            {
+                re = true;
+            }
+            return re;
+
         }
     }
 }

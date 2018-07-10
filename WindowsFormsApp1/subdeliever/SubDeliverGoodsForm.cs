@@ -189,7 +189,7 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (Convert.ToInt32(textBox1.Text)>0)
+            if (Tool.TextBoxExpression(textBox1, @"^\d+$") && Convert.ToInt32(textBox1.Text) > 0)
             {
                 if (GoodsNumber()[0] - Convert.ToInt32(textBox1.Text) >= 0)
                 {
@@ -313,6 +313,7 @@ namespace WindowsFormsApp1
                 ListViewItem item = this.listView1.SelectedItems[i];
                 this.listView1.Items.Remove(item);
             }
+            tishi();
         }
 
         //修改
