@@ -169,19 +169,18 @@ namespace WindowsFormsApp1
             if (text_Amount.Text.Trim() != null)
             {
 
-
-
-                if (addgoodnumber()[1] != -1)
+                if (addgoodnumber() != -1)
                 {
-                    int num = Convert.ToInt32(listView1.Items[addgoodnumber()[1]].SubItems[1].Text);
+                    int num = Convert.ToInt32(listView2.Items[addgoodnumber()].SubItems[1].Text);
                     num += Convert.ToInt32(text_Amount.Text);
-                    listView1.Items[addgoodnumber()[1]].SubItems[1].Text = num.ToString();
+                    listView2.Items[addgoodnumber()].SubItems[1].Text = num.ToString();
+
                 }
                 else
                 {
                     ListViewItem lvi = new ListViewItem(cb_GoodsName.Text);
-                    listView1.Items.Add(lvi);
-                    lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, cb_GoodsName.Text));
+                    listView2.Items.Add(lvi);
+                    lvi.SubItems.Add(new ListViewItem.ListViewSubItem(lvi, text_Amount.Text));
                 }
                 text_Amount.Text = "";
             }
@@ -192,24 +191,13 @@ namespace WindowsFormsApp1
             }
 
         }
-        private List<int> addgoodnumber()
+        private int addgoodnumber()
         {
-            List<int> vs = new List<int>();
-            int i = -1;
-            int number = Convert.ToInt32(text_Amount.Text);
-            foreach (ListViewItem lvi in listView1.Items)
-            {
-                if (cb_GoodsName.Text == lvi.SubItems[0].Text)
-                {
-                    number -= Convert.ToInt32(lvi.SubItems[1].Text);
-                    i = listView1.Items.IndexOf(lvi);
-
-                }
-            }
-            vs.Add(number);
-            vs.Add(i);
-            return vs;
+           
+            int i = Tool.GoodsNumber(listView2, cb_GoodsName.Text);
+            return i;
         }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
