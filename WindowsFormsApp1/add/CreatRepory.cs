@@ -33,17 +33,22 @@ namespace WindowsFormsApp1
                 realreportary.RealReportaryCode = text_reportycode.Text;
                 realreportary.RealReportaryName = text_reportyname.Text;
                 realreportary.RealReportaryCity = text_city.Text;
-                linq.TransReporatory.InsertOnSubmit(transreporatory);
-                linq.RealReportary.InsertOnSubmit(realreportary);
-                linq.SubmitChanges();
-                MessageBox.Show("数据添加成功");
-                text_reportycode.Clear();
-                text_reportyname.Clear();
-                text_city.Clear();
+                int renum = Convert.ToInt32(DBHelper.GetTable(DBHelper.retan(text_reportyname.Text)).Rows[0][0].ToString());
+                int num = Convert.ToInt32(DBHelper.GetTable(DBHelper.tan(text_reportyname.Text)).Rows[0][0].ToString());
+                if (Tool.TextBoxExpression1(text_reportycode) &&Tool.TextBoxExpression1(text_reportyname) &&Tool.TextBoxExpression1(text_city)&&renum==0&&num==0)
+                {
+                    linq.TransReporatory.InsertOnSubmit(transreporatory);
+                    linq.RealReportary.InsertOnSubmit(realreportary);
+                    linq.SubmitChanges();
+                    MessageBox.Show("数据添加成功");
+                    text_reportycode.Clear();
+                    text_reportyname.Clear();
+                    text_city.Clear();
+                }
             }
             catch (Exception )
             {
-                Console.WriteLine("添加失败");
+               MessageBox.Show("添加失败");
             }
         }
 

@@ -187,10 +187,6 @@ namespace WindowsFormsApp1
                 text_Amount.Text = "";
             }
 
-            else
-            {
-                MessageBox.Show("请输入货物量");
-            }
 
         }
         private int addgoodnumber()

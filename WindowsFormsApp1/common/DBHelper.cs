@@ -564,13 +564,21 @@ namespace WindowsFormsApp1.common
         //获取货物的名称
         public static string goodsName(string name)
         {
-            return @"select GoodsName from Goods where  GoodsName= '" + name + "'";
+            return @"select count(GoodsName) from Goods where  GoodsName= '" + name + "'";
         }
 
         //获取管理员的编号
         public static string employeeNumber(string code)
         {
-            return @"select EmployeeNumber from Employee where EmployeeNumber = '" + code + "'";
+            return @"select count(EmployeeNumber) from Employee where EmployeeNumber = '" + code + "'";
+        }
+        public static string retan(string code)
+        {
+            return @"select count(*) from RealReportary where RealReportaryName='"+code+"'";
+        }
+        public static string tan(string code)
+        {
+            return @"sselect count(*) from TransReporatory where TransReporatoryName='"+code+"'";
         }
 
         //获取仓库的名称

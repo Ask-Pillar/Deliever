@@ -31,9 +31,10 @@ namespace WindowsFormsApp1
             employee.EmployeeStatus = 1;
             employee.EmployeePhone = textBox1.Text;
             DataTable code = DBHelper.GetTable(DBHelper.employeeNumber(textBox5.Text));
+            int num = Convert.ToInt32(code.Rows[0][0].ToString());
             bool s = Tool.regularPhone(textBox1, @"^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$");
             bool t = Tool.regularnumber(textBox5, @"/^\d{8}$/");
-            if (Tool.TextBoxExpression(textBox3, @"^\d+$") && Tool.TextBoxExpression(textBox1, @"^\d+$") && Tool.TextBoxExpression(textBox5, @"^\d+$") && s &&t)
+            if (Tool.TextBoxExpression1(textBox3 ) && Tool.TextBoxExpression1(textBox1) && Tool.TextBoxExpression1(textBox5) && s &&t&&num==0)
             {
                 linq.Employee.InsertOnSubmit(employee);
                 linq.SubmitChanges();

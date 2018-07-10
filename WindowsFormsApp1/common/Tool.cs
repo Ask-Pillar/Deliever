@@ -76,6 +76,7 @@ namespace WindowsFormsApp1.common
             }
             return i;
         }
+        
 
         //输入格式限制
         public static bool TextBoxExpression(TextBox textBox, string Expression)
@@ -85,6 +86,21 @@ namespace WindowsFormsApp1.common
             if (textBox.Text=="" || !reg.Match(textBox.Text).Success)
             {
                 MessageBox.Show("请输入正确的输入格式");
+            }
+            else
+            {
+                re = true;
+            }
+            return re;
+
+        }
+        public static bool TextBoxExpression1(TextBox textBox)
+        {
+            bool re = false;
+            
+            if (textBox.Text == "" )
+            {
+                MessageBox.Show(textBox.Name+"不能为空");
             }
             else
             {
