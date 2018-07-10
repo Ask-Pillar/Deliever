@@ -38,14 +38,16 @@ namespace WindowsFormsApp1
         public List<string> Del = new List<string>();
 
         DataTable incombox;
+        DataTable incombox1;
         DataTable incomcoxGood;
 
         private void CreatDeliever_Load(object sender, EventArgs e)
         {
             incombox = DBHelper.GetTable(DBHelper.TransReporatoryName());
+            incombox1 = DBHelper.GetTable(DBHelper.TransReporatoryName1());
             incomcoxGood = DBHelper.GetTable(DBHelper.GOODnam());
             label8.Text = Emp;
-            comboBox1.DataSource = incombox;
+            comboBox1.DataSource = incombox1;
             cb_GoodsName.DataSource = incomcoxGood;
             this.comboBox1.DisplayMember = "TransReporatoryName";
             this.cb_GoodsName.DisplayMember = "GoodsName";
@@ -56,16 +58,16 @@ namespace WindowsFormsApp1
         private void DelIver()
         
         {
-                    int Rt = listView1.Items.Count;
-                    string startID = DBHelper.GetTable(DBHelper.GetReID(listView1.Items[0].Text)).Rows[0][0].ToString();
-                    string endID = DBHelper.GetTable(DBHelper.GetReID(listView1.Items[listView1.Items.Count - 1].Text)).Rows[0][0].ToString();
-                    this.Del.Add(startID);
-                    this.Del.Add(DBHelper.GetTable(DBHelper.EmpolyeeID(label8.Text)).Rows[0][0].ToString());
-                    this.Del.Add(endID);
-                    this.Del.Add("0");
-                    this.Del.Add("0");
-                    this.Del.Add(DateTime.Now.ToString());
-                    this.Del.Add(Transferrstr());
+                 int Rt = listView1.Items.Count;
+                 string startID = DBHelper.GetTable(DBHelper.GetReID(listView1.Items[0].Text)).Rows[0][0].ToString();
+                 string endID = DBHelper.GetTable(DBHelper.GetReID(listView1.Items[listView1.Items.Count - 1].Text)).Rows[0][0].ToString();
+                 this.Del.Add(startID);
+                 this.Del.Add(DBHelper.GetTable(DBHelper.EmpolyeeID(label8.Text)).Rows[0][0].ToString());
+                 this.Del.Add(endID);
+                 this.Del.Add("0");
+                 this.Del.Add("0");
+                 this.Del.Add(DateTime.Now.ToString());
+                 this.Del.Add(Transferrstr());
         }
 
         public int delid;//DelieverID的全局变量
@@ -135,7 +137,7 @@ namespace WindowsFormsApp1
                 ListViewItem lvi = new ListViewItem(comboBox1.Text);
                 listView1.Items.Add(lvi);
                 transferr.Add(comboBox1.Text);
-                Tool.DeletComboxData(incombox, comboBox1.Text);
+                Tool.DeletComboxData(incombox1, comboBox1.Text);
             }
             else
             { 
@@ -166,7 +168,7 @@ namespace WindowsFormsApp1
         //在listview里面添加货物
         private void btn_addGoods_Click(object sender, EventArgs e)
         {
-            if (text_Amount.Text.Trim() != null)
+            if (Tool.TextBoxExpression(text_Amount, @"^\d+$"))
             {
 
                 if (addgoodnumber() != -1)
@@ -208,8 +210,12 @@ namespace WindowsFormsApp1
         {
             for (int i = this.listView1.SelectedItems.Count - 1; i >= 0; i--)
             {
+              
                 ListViewItem item = this.listView1.SelectedItems[i];
+                Tool.addComboxData(incombox1,item.Text);
                 this.listView1.Items.Remove(item);
+         
+                
             }
         }
 

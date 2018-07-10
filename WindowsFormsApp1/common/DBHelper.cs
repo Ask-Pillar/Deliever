@@ -578,6 +578,11 @@ namespace WindowsFormsApp1.common
         {
             return @"select * from TransReporatory";
         }
+        public static string TransReporatoryName1()
+        {
+            return @"select TransReporatoryName from TransReporatory";
+        }
+
         public static string GOODnam()
         {
             return @"select * from Goods";
