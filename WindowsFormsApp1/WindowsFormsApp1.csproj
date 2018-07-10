@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22C21CFB-2F25-4AB8-BD75-275A93ED5E53}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp1</RootNamespace>
+    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="deliever\CreatDeliever.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deliever\CreatDeliever.Designer.cs">
+      <DependentUpon>CreatDeliever.cs</DependentUpon>
+    </Compile>
+    <Compile Include="add\CreatRepory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add\CreatRepory.Designer.cs">
+      <DependentUpon>CreatRepory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\DBHelper.cs" />
+    <Compile Include="dataset\DelieverDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DelieverDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\DelieverDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DelieverDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="deliever\DelieverGoodsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deliever\DelieverGoodsForm.Designer.cs">
+      <DependentUpon>DelieverGoodsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="add\empoly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add\empoly.Designer.cs">
+      <DependentUpon>empoly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deliever\EveryDeliever.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deliever\EveryDeliever.Designer.cs">
+      <DependentUpon>EveryDeliever.cs</DependentUpon>
+    </Compile>
+    <Compile Include="add\GoodsNameAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add\GoodsNameAdd.Designer.cs">
+      <DependentUpon>GoodsNameAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="linq\linqtosqlDataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>linqtosqlDataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="menu\main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menu\main.Designer.cs">
+      <DependentUpon>main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menu\selectcangku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menu\selectcangku.Designer.cs">
+      <DependentUpon>selectcangku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="subdeliever\SubAndRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="subdeliever\SubAndRep.Designer.cs">
+      <DependentUpon>SubAndRep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="subdeliever\SubDeliverGoodsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="subdeliever\SubDeliverGoodsForm.Designer.cs">
+      <DependentUpon>SubDeliverGoodsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\SysConfig.cs" />
+    <Compile Include="common\Tool.cs" />
+    <EmbeddedResource Include="deliever\CreatDeliever.resx">
+      <DependentUpon>CreatDeliever.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add\CreatRepory.resx">
+      <DependentUpon>CreatRepory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="deliever\DelieverGoodsForm.resx">
+      <DependentUpon>DelieverGoodsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add\empoly.resx">
+      <DependentUpon>empoly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="deliever\EveryDeliever.resx">
+      <DependentUpon>EveryDeliever.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add\GoodsNameAdd.resx">
+      <DependentUpon>GoodsNameAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu\main.resx">
+      <DependentUpon>main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu\selectcangku.resx">
+      <DependentUpon>selectcangku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="subdeliever\SubAndRep.resx">
+      <DependentUpon>SubAndRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="subdeliever\SubDeliverGoodsForm.resx">
+      <DependentUpon>SubDeliverGoodsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="dataset\DelieverDataSet.xsc">
+      <DependentUpon>DelieverDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DelieverDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DelieverDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\DelieverDataSet.xss">
+      <DependentUpon>DelieverDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DelieverDataSet7.xsc">
+      <DependentUpon>DelieverDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\DelieverDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DelieverDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataset\DelieverDataSet7.xss">
+      <DependentUpon>DelieverDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="linq\linqtosqlDataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>linqtosqlDataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="linq\linqtosqlDataClasses1.dbml.layout">
+      <DependentUpon>linqtosqlDataClasses1.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Deliever" Class="linqtosqlDataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=182.254.246.117;Initial Catalog=Deliever;User ID=sa" SettingsObjectName="WindowsFormsApp1.Properties.Settings" SettingsPropertyName="DelieverConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Deliever" Member="Deliever">
+    <Type Name="Deliever">
+      <Column Name="DelieverID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DelieverStartReporatoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DelieverDestinationReporatoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HaveSubDelievers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DelieverStatus" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DelieverCreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DelieverCompletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DelieverTransferReporatory" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="Deliever_DelieverGoods" Member="DelieverGoods" ThisKey="DelieverID" OtherKey="DelieverID" Type="DelieverGoods" />
+      <Association Name="Deliever_SubDeliever" Member="SubDeliever" ThisKey="DelieverID" OtherKey="DelieverID" Type="SubDeliever" />
+      <Association Name="Deliever_TranReporatoryGoods" Member="TranReporatoryGoods" ThisKey="DelieverID" OtherKey="DelieverID" Type="TranReporatoryGoods" />
+      <Association Name="TransReporatory_Deliever" Member="TransReporatory" ThisKey="DelieverStartReporatoryID" OtherKey="TransReporatoryID" Type="TransReporatory" IsForeignKey="true" />
+      <Association Name="TransReporatory_Deliever1" Member="TransReporatory1" ThisKey="DelieverDestinationReporatoryID" OtherKey="TransReporatoryID" Type="TransReporatory" IsForeignKey="true" />
+      <Association Name="Employee_Deliever" Member="Employee" ThisKey="EmployeeID" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DelieverGoods" Member="DelieverGoods">
+    <Type Name="DelieverGoods">
+      <Column Name="GoodsID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DelieverID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DelieverTotalNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DelieverGoodsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="Deliever_DelieverGoods" Member="Deliever" ThisKey="DelieverID" OtherKey="DelieverID" Type="Deliever" IsForeignKey="true" />
+      <Association Name="Goods_DelieverGoods" Member="Goods" ThisKey="GoodsID" OtherKey="GoodsID" Type="Goods" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RealReportary" Member="RealReportary">
+    <Type Name="RealReportary">
+      <Column Name="RealReportaryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RealReportaryCode" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="RealReportaryName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RealReportaryCity" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="RealReportary_RealReportaryGoods" Member="RealReportaryGoods" ThisKey="RealReportaryID" OtherKey="RealReportaryID" Type="RealReportaryGoods" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RealReportaryGoods" Member="RealReportaryGoods">
+    <Type Name="RealReportaryGoods">
+      <Column Name="RealReportaryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GoodsID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RealReportaryGoodsID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RealNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="RealReportary_RealReportaryGoods" Member="RealReportary" ThisKey="RealReportaryID" OtherKey="RealReportaryID" Type="RealReportary" IsForeignKey="true" />
+      <Association Name="Goods_RealReportaryGoods" Member="Goods" ThisKey="GoodsID" OtherKey="GoodsID" Type="Goods" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SubDeliever" Member="SubDeliever">
+    <Type Name="SubDeliever">
+      <Column Name="SubDeliverID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DelieverID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SendEmployeeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubDeliverStartReporatoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReceiveEmployeeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubDeliverDestinationReporatoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubDeliverType" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="SubDeliverTrafficNumber" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SubDeliverStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubDeliverSendDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SubDeliverReceiveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SubDeliever_SubDeliverGoods" Member="SubDeliverGoods" ThisKey="SubDeliverID" OtherKey="SubDeliverID" Type="SubDeliverGoods" />
+      <Association Name="Deliever_SubDeliever" Member="Deliever" ThisKey="DelieverID" OtherKey="DelieverID" Type="Deliever" IsForeignKey="true" />
+      <Association Name="TransReporatory_SubDeliever" Member="TransReporatory" ThisKey="SubDeliverDestinationReporatoryID" OtherKey="TransReporatoryID" Type="TransReporatory" IsForeignKey="true" />
+      <Association Name="TransReporatory_SubDeliever1" Member="TransReporatory1" ThisKey="SubDeliverStartReporatoryID" OtherKey="TransReporatoryID" Type="TransReporatory" IsForeignKey="true" />
+      <Association Name="Employee_SubDeliever" Member="Employee" ThisKey="ReceiveEmployeeID" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Employee_SubDeliever1" Member="Employee1" ThisKey="SendEmployeeID" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SubDeliverGoods" Member="SubDeliverGoods">
+    <Type Name="SubDeliverGoods">
+      <Column Name="GoodsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubDeliverID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubDeliverTotalNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubDeliverGoodsID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="SubDeliever_SubDeliverGoods" Member="SubDeliever" ThisKey="SubDeliverID" OtherKey="SubDeliverID" Type="SubDeliever" IsForeignKey="true" />
+      <Association Name="Goods_SubDeliverGoods" Member="Goods" ThisKey="GoodsID" OtherKey="GoodsID" Type="Goods" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TranReporatoryGoods" Member="TranReporatoryGoods">
+    <Type Name="TranReporatoryGoods">
+      <Column Name="GoodsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TransReporatoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TransNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TransReporatoryGoodsID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DelieverID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Deliever_TranReporatoryGoods" Member="Deliever" ThisKey="DelieverID" OtherKey="DelieverID" Type="Deliever" IsForeignKey="true" />
+      <Association Name="TransReporatory_TranReporatoryGoods" Member="TransReporatory" ThisKey="TransReporatoryID" OtherKey="TransReporatoryID" Type="TransReporatory" IsForeignKey="true" />
+      <Association Name="Goods_TranReporatoryGoods" Member="Goods" ThisKey="GoodsID" OtherKey="GoodsID" Type="Goods" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TransReporatory" Member="TransReporatory">
+    <Type Name="TransReporatory">
+      <Column Name="TransReporatoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TransReporatoryCode" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="TransReporatoryName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="TransReporatoryCity" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="TransReporatory_Deliever" Member="Deliever" ThisKey="TransReporatoryID" OtherKey="DelieverStartReporatoryID" Type="Deliever" />
+      <Association Name="TransReporatory_Deliever1" Member="Deliever1" ThisKey="TransReporatoryID" OtherKey="DelieverDestinationReporatoryID" Type="Deliever" />
+      <Association Name="TransReporatory_SubDeliever" Member="SubDeliever" ThisKey="TransReporatoryID" OtherKey="SubDeliverDestinationReporatoryID" Type="SubDeliever" />
+      <Association Name="TransReporatory_SubDeliever1" Member="SubDeliever1" ThisKey="TransReporatoryID" OtherKey="SubDeliverStartReporatoryID" Type="SubDeliever" />
+      <Association Name="TransReporatory_TranReporatoryGoods" Member="TranReporatoryGoods" ThisKey="TransReporatoryID" OtherKey="TransReporatoryID" Type="TranReporatoryGoods" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Goods" Member="Goods">
+    <Type Name="Goods">
+      <Column Name="GoodsID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GoodsName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GoodsCode" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Goods_DelieverGoods" Member="DelieverGoods" ThisKey="GoodsID" OtherKey="GoodsID" Type="DelieverGoods" />
+      <Association Name="Goods_RealReportaryGoods" Member="RealReportaryGoods" ThisKey="GoodsID" OtherKey="GoodsID" Type="RealReportaryGoods" />
+      <Association Name="Goods_SubDeliverGoods" Member="SubDeliverGoods" ThisKey="GoodsID" OtherKey="GoodsID" Type="SubDeliverGoods" />
+      <Association Name="Goods_TranReporatoryGoods" Member="TranReporatoryGoods" ThisKey="GoodsID" OtherKey="GoodsID" Type="TranReporatoryGoods" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employee">
+    <Type Name="Employee">
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmployeeNumber" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmployeePhone" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="Employee_Deliever" Member="Deliever" ThisKey="EmployeeID" OtherKey="EmployeeID" Type="Deliever" />
+      <Association Name="Employee_SubDeliever" Member="SubDeliever" ThisKey="EmployeeID" OtherKey="ReceiveEmployeeID" Type="SubDeliever" />
+      <Association Name="Employee_SubDeliever1" Member="SubDeliever1" ThisKey="EmployeeID" OtherKey="SendEmployeeID" Type="SubDeliever" />
+    </Type>
+  </Table>
+</Database>
