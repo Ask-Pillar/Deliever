@@ -26,8 +26,8 @@ namespace WindowsFormsApp1
             Goods good = new Goods();
             good.GoodsName = textBox1.Text+'*'+textBox2.Text;
             good.GoodsCode = textBox3.Text;
-            string name=  DBHelper.GetTable(DBHelper.goodsName(textBox1.Text + textBox2.Text)).Rows[0][0].ToString();
-            if (name!=textBox1.Text + textBox2.Text)//添加的语句是否已经有
+            int num= Convert.ToInt32(DBHelper.GetTable(DBHelper.goodsName(textBox1.Text + textBox2.Text)).Rows[0][0].ToString());
+            if (num==0&&Tool.TextBoxExpression1(textBox1)&& Tool.TextBoxExpression1(textBox2)&& Tool.TextBoxExpression1(textBox3))//添加的语句是否已经有
             {
                 linq.Goods.InsertOnSubmit(good);
                 linq.SubmitChanges();
@@ -44,6 +44,11 @@ namespace WindowsFormsApp1
                 textBox2.Clear();
                 textBox3.Clear();
             }
+        }
+
+        private void GoodsNameAdd_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

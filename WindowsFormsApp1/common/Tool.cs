@@ -11,31 +11,56 @@ namespace WindowsFormsApp1.common
 {
     class Tool
     {
+        //删除combobox里面的内容
         public static void DeletComboxData(DataTable dt,string str)
         {
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (dt.Rows[i].ItemArray[2].ToString() ==str)
+                if (dt.Rows[i].ItemArray[0].ToString() ==str)
                 {
                     dt.Rows.Remove(dt.Rows[i]);
                 }
             }
           
         }
+        //添加combobox里面的内容
+        public static void addComboxData(DataTable dt, string str)
+        {
+                    dt.Rows.Add(str);
+        }
+
+
 
         //正则手机号码
-        public static bool  regularPhone(string phnumber)
+        public static bool  regularPhone(TextBox textBox, string Expression)
         {
-            Regex rx = new Regex(@"^(\d{3,4}-)?\d{6,8}$");
-            bool result= rx.IsMatch(phnumber);
-            return result;
-            
+            bool re = false;
+            Regex reg = new Regex(Expression);
+            if (textBox.Text == "" || !reg.Match(textBox.Text).Success)
+            {
+                MessageBox.Show("请输入正确的电话号码");
+            }
+            else
+            {
+                re = true;
+            }
+            return re;
         }
-        public static bool regularnumber(string number)
+       
+        public static bool regularnumber(TextBox textBox, string Expression)
         {
-            Regex rx8 = new Regex(@"/^\d{8}$/");
-            bool result = rx8.IsMatch(number);
-            return result;
+          
+            bool re = false;
+            Regex reg = new Regex(Expression);
+            if (textBox.Text == "" || !reg.Match(textBox.Text).Success)
+            {
+                MessageBox.Show("请输入8位有效数字");
+            }
+            else
+            {
+                re = true;
+            }
+            return re;
         }
 
         //获取listview中的索引
@@ -51,7 +76,9 @@ namespace WindowsFormsApp1.common
             }
             return i;
         }
+        
 
+        //输入格式限制
         public static bool TextBoxExpression(TextBox textBox, string Expression)
         {
             bool re = false;
@@ -65,6 +92,21 @@ namespace WindowsFormsApp1.common
                 re = true;
             }
             return re;
+        }
+        public static bool TextBoxExpression1(TextBox textBox)
+        {
+            bool re = false;
+            
+            if (textBox.Text == "" )
+            {
+                MessageBox.Show(textBox.Name+"不能为空");
+            }
+            else
+            {
+                re = true;
+            }
+            return re;
+
         }
     }
 }

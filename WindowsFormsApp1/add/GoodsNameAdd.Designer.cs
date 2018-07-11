@@ -110,6 +110,7 @@
             this.MaximizeBox = false;
             this.Name = "GoodsNameAdd";
             this.Text = "商品添加";
+            this.Load += new System.EventHandler(this.GoodsNameAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -30,10 +30,11 @@ namespace WindowsFormsApp1
             employee.EmployeeName = textBox3.Text;
             employee.EmployeeStatus = 1;
             employee.EmployeePhone = textBox1.Text;
-           DataTable code = DBHelper.GetTable(DBHelper.employeeNumber(textBox5.Text));
-            bool s = Tool.regularPhone(textBox1.Text);
-            bool t = Tool.regularnumber(textBox5.Text);
-            if (code==null&& Tool.regularPhone(textBox1.Text)&&Tool.regularnumber(textBox5.Text))
+            DataTable code = DBHelper.GetTable(DBHelper.employeeNumber(textBox5.Text));
+            int num = Convert.ToInt32(code.Rows[0][0].ToString());
+            bool s = Tool.regularPhone(textBox1, @"^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$");
+            bool t = Tool.regularnumber(textBox5, @"/^\d{8}$/");
+            if (Tool.TextBoxExpression1(textBox3 ) && Tool.TextBoxExpression1(textBox1) && Tool.TextBoxExpression1(textBox5) && s &&t&&num==0)
             {
                 linq.Employee.InsertOnSubmit(employee);
                 linq.SubmitChanges();
@@ -42,14 +43,7 @@ namespace WindowsFormsApp1
                 textBox1.Clear();
                 textBox5.Clear();
             }
-            else
-            {
-              
-                MessageBox.Show("请按照正确的格式添加或者您已经注册");
-                textBox3.Clear();
-                textBox1.Clear();
-                textBox5.Clear();
-            }
+         
 
         }
     }
