@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeDeliver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeDeliver.Designer.cs">
+      <DependentUpon>ChangeDeliver.cs</DependentUpon>
+    </Compile>
     <Compile Include="deliever\CreatDeliever.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </Compile>
     <Compile Include="common\SysConfig.cs" />
     <Compile Include="common\Tool.cs" />
+    <EmbeddedResource Include="ChangeDeliver.resx">
+      <DependentUpon>ChangeDeliver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="deliever\CreatDeliever.resx">
       <DependentUpon>CreatDeliever.cs</DependentUpon>
     </EmbeddedResource>

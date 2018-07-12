@@ -31,7 +31,6 @@ namespace WindowsFormsApp1
             {
                 linq.Goods.InsertOnSubmit(good);
                 linq.SubmitChanges();
-
                 MessageBox.Show(textBox1.Text + '*'+ textBox2.Text + "添加成功");
                 textBox1.Clear();
                 textBox2.Clear();
