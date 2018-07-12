@@ -85,14 +85,13 @@ namespace WindowsFormsApp1.common
             Regex reg = new Regex(Expression);
             if (textBox.Text=="" || !reg.Match(textBox.Text).Success)
             {
-                MessageBox.Show("请输入正确的输入格式");
+                re = false;
             }
             else
             {
                 re = true;
             }
             return re;
-
         }
         public static bool TextBoxExpression1(TextBox textBox)
         {

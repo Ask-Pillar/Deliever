@@ -52,13 +52,18 @@ namespace WindowsFormsApp1
             try
             {
                  
-                //创建子运单
-                if (comboBox2.Text==""||textBox1.Text == "")
                 {
-                    new Exception("子运单某些内容不能为空");
-                }
-                {
-                    SubDelIver();
+                    string ex = @"^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$";
+                    if (Tool.TextBoxExpression(textBox2, ex))
+                    {
+                        SubDelIver();
+                    }
+                    else
+                    {
+                        textBox2.Text = "";
+                        MessageBox.Show("请输入正确格式的车牌号");
+
+                    }
                     int SubID = DBHelper.SelectId(DBHelper.AddSubDelieversql(SubDel));
                     tishi = true;
 
@@ -113,7 +118,7 @@ namespace WindowsFormsApp1
             catch
             {
                 tishi = false;
-                MessageBox.Show(e.ToString());
+                MessageBox.Show("运单创建失败");
             }
 
             if(tishi==true)
@@ -189,7 +194,7 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (Tool.TextBoxExpression(textBox1, @"^\d+$") && Convert.ToInt32(textBox1.Text) > 0)
+            if (Tool.TextBoxExpression(textBox1, @"^\+?[1-9][0-9]*$") && Convert.ToInt32(textBox1.Text) > 0) 
             {
                 if (GoodsNumber()[0] - Convert.ToInt32(textBox1.Text) >= 0)
                 {
@@ -214,6 +219,10 @@ namespace WindowsFormsApp1
                     MessageBox.Show("现有该货物不足以发货" + textBox1.Text+"件");
                 }
             }
+            else
+            {
+                MessageBox.Show("货物的数量请输入正确格式");
+            }
 
 
 
@@ -222,19 +231,20 @@ namespace WindowsFormsApp1
         //添加运单
         private void SubDelIver()
         {
-            SubDel.Clear();
-            string ThisID = DBHelper.GetTable(DBHelper.GetReID(ThisStation)).Rows[0][0].ToString();
-            string NextID = DBHelper.GetTable(DBHelper.GetReID(NextStationname)).Rows[0][0].ToString();
-            //添加数据
-            this.SubDel.Add(this.delId.ToString());
-            this.SubDel.Add(DBHelper.GetTable(DBHelper.EmpolyeeID(people)).Rows[0][0].ToString());
-            this.SubDel.Add(ThisID);
-            this.SubDel.Add(NextID);
-            this.SubDel.Add(comboBox3.Text);
-            this.SubDel.Add(textBox2.Text);
-            this.SubDel.Add("0");
-            this.SubDel.Add(DateTime.Now.ToString());
-            //this.SubDel.Add(null);
+                SubDel.Clear();
+
+                string ThisID = DBHelper.GetTable(DBHelper.GetReID(ThisStation)).Rows[0][0].ToString();
+                string NextID = DBHelper.GetTable(DBHelper.GetReID(NextStationname)).Rows[0][0].ToString();
+                //添加数据
+                this.SubDel.Add(this.delId.ToString());
+                this.SubDel.Add(DBHelper.GetTable(DBHelper.EmpolyeeID(people)).Rows[0][0].ToString());
+                this.SubDel.Add(ThisID);
+                this.SubDel.Add(NextID);
+                this.SubDel.Add(comboBox3.Text);
+                this.SubDel.Add(textBox2.Text);
+                this.SubDel.Add("0");
+                this.SubDel.Add(DateTime.Now.ToString());
+
         }
 
         //添加货物
